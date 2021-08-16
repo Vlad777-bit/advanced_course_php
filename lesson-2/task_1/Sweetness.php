@@ -12,10 +12,10 @@ class Sweetness extends Product
   private $price;
   private $count;
 
-  function __construct($title, $count = 1)
+  function __construct($title, $price, $count = 1)
   {
     $this->title = $title;
-    $this->price = 3000;
+    $this->price = $price;
     $this->count = $count;
   }
 
@@ -27,8 +27,13 @@ class Sweetness extends Product
     return $this->$val;
   }
 
+  public function countInOne() 
+  {
+    return "Стоимость за один товар составляет $this->price";
+  }
+
   public function count() 
   {
-    return "Вы приобрели товар {$this->title} " . $this->count * $this->price;
+    return "Вы приобрели товар $this->title, в кол-ве $this->count кг за "  . $this->count * $this->price . " руб.";
   }
 }

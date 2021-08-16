@@ -26,8 +26,13 @@ class Ssd extends Product
     return $this->$val;
   }
 
+  public function countInOne() 
+  {
+    return "Стоимость за один товар составляет $this->price";
+  }
+
   public function count() 
   {
-    return "Вы приобрели товар {$this->title} " . "за " . $this->count * $this->price;
+    return "Вы приобрели товар $this->title, в кол-ве $this->count шт. за "  . $this->count * $this->price . " руб.";
   }
 }

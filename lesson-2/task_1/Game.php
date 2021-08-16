@@ -26,8 +26,13 @@ class Game extends Product
     return $this->$val;
   }
 
+  public function countInOne() 
+  {
+    return "Стоимость за один товар составляет " . self::PRICE;
+  }
+
   public function count() 
   {
-    return "Вы приобрели товар {$this->title} " . "за "  . $this->count * self::PRICE;
+    return "Вы приобрели товар $this->title, в кол-ве $this->count шт. за "  . $this->count * self::PRICE . " руб.";
   }
 }
