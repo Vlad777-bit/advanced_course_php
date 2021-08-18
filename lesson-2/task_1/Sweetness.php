@@ -6,7 +6,7 @@ spl_autoload_register(function ($className)
 });
 
 
-class Sweetness extends Product
+class Sweetness extends Product 
 {
   private $title;
   private $price;
@@ -32,8 +32,13 @@ class Sweetness extends Product
     return "Стоимость за один товар составляет $this->price";
   }
 
+  public function totalCost()
+  {
+    return $this->price * $this->count;
+  }
+
   public function count() 
   {
-    return "Вы приобрели товар $this->title, в кол-ве $this->count кг за "  . $this->count * $this->price . " руб.";
+    return "Вы приобрели товар $this->title, в кол-ве $this->count кг. за "  . $this->totalCost() . " руб. <br> Прибыль с продажи составляет " . $this->totalCost() / 100 * parent::PROFIT_PERCENT . " руб.";
   }
 }

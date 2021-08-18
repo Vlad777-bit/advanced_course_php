@@ -8,13 +8,14 @@ spl_autoload_register(function ($className)
 class Game extends Product
 {
   private $title;
-  private const PRICE = 1500;
+  private $price; 
   private $count;
 
   public function __construct($title, $count = 1)
   {
     $this->title = $title;
     $this->count = $count;
+    $this->price = parent::PRICE;
   }
 
   public function __get($val)
@@ -28,11 +29,16 @@ class Game extends Product
 
   public function countInOne() 
   {
-    return "Стоимость за один товар составляет " . self::PRICE;
+    return "Стоимость за один товар составляет " . $this->price;
+  }
+
+  public function totalCost()
+  {
+    return $this->price * $this->count;
   }
 
   public function count() 
   {
-    return "Вы приобрели товар $this->title, в кол-ве $this->count шт. за "  . $this->count * self::PRICE . " руб.";
+    return "Вы приобрели товар $this->title, в кол-ве $this->count шт. за "  . $this->totalCost() . " руб. <br> Прибыль с продажи составляет " . $this->totalCost() / 100 * parent::PROFIT_PERCENT . " руб.";
   }
 }
