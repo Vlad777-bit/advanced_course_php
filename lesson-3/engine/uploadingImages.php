@@ -43,12 +43,10 @@
           } else {
             $message = 'Ошибка загрузки файла!';
             header("Location: ../index.php?err=$message");
-            echo '1';
           }
       } else {
         $message = 'Не правильный тип файла!';
         header("Location: ../index.php?err=$message");
-        echo '2';
     }
   } else {
     header("Location: ../index.php?err=$message");
