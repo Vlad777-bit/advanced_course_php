@@ -12,8 +12,7 @@ try
 
   $dataInfo = $db->query("
   select title, img, desc_short from products
-  join images
-  where products.id = images.product_id
+  join images on (products.id = images.product_id)
   ")->fetchAll(PDO::FETCH_ASSOC);
 
   if ( $db->errorInfo() === 0000 ) {
