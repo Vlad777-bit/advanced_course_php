@@ -9,12 +9,10 @@ $twig = new \Twig\Environment($loader, []);
 
 $template = $twig->load('index.html');
 
-$title = 'Каталог товаров';
-$title_product = $item['title'];
-$description = $item['desc_short'];
+$titlePage = 'Каталог товаров';
+$products = $item;
 
 echo $template->render([
-  'title' => $title,
-  'title_product' => $title_product,
-  'description' => $description,
+  'titlePage' => $titlePage,
+  'products' => $products,
 ]);

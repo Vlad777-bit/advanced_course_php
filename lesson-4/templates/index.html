@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <title>{{ title }}</title>
+    <title>{{ titlePage }}</title>
     <link href="https://fonts.googleapis.com/css2?family=Recursive:wght@500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="public/css/css.css">
 </head>
@@ -13,15 +13,15 @@
     {% include 'menu.html' %}
 
     <div class="content">
-        <h1 class="title">{{ title }}</h1>
+        <h1 class="title">{{ titlePage }}</h1>
         <p>
             <b>Дорогие друзья!</b> Я&nbsp;рад, что&nbsp;Вы смогли посетить наш интернет-магазин <i>E-bike</i>
             Надеюсь Вы&nbsp;найдёте
             электровелосипед, подходящий именно Вам!
         </p>
-        
+    
         {% include 'item.html' %}
-        
+
         <div class="more">
             <button class="buy_btn w50">Ещё</button>
         </div>

@@ -156,14 +156,15 @@ caption {
 }
 
 .img {
-    outline: 3px solid coral;
+    object-fit: contain;
+    /* outline: 3px solid coral; */
     width: 493px;
     height: 347px;
     transition: .5s;
 }
 
 .img:hover {
-    outline: 3px solid #ffefd5;
+    /* outline: 3px solid #ffefd5; */
 }
 
 .specifications {
