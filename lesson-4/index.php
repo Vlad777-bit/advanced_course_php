@@ -15,4 +15,5 @@ $products = $item;
 echo $template->render([
   'titlePage' => $titlePage,
   'products' => $products,
+  'count' => count($item),
 ]);

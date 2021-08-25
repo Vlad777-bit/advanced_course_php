@@ -23,7 +23,8 @@
         {% include 'item.html' %}
 
         <div class="more">
-            <button class="buy_btn w50">Ещё</button>
+            <a href="?limit={{ count + 1 }}" class="buy_btn w50 a_link">Ещё</a>
+            <a href="index.php" class="buy_btn w50 a_link">Скрыть все</a>
         </div>
 
     </div>

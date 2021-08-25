@@ -5,24 +5,23 @@ try
   $connect = DB . ':host=' . DB_HOST . ';dbname=' . DB_NAME;
   $db = new PDO( $connect, DB_USER, DB_PASS );
 
-  if ( $db->errorInfo() === 0000 ) {
-    $error_array = $db->errorInfo();
-    echo "SQL ошибка: " . $error_array[2] . '<br>';
+  $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+  if ( isset($_GET['limit']) )
+  {
+    $limit = $_GET['limit'];
+  } 
+  else 
+  {
+    $limit = 1;
   }
 
-  $dataInfo = $db->query("
+  $item = $db->query("
   select title, img, desc_short from products
   join images on (products.id = images.product_id)
+  limit $limit
   ")->fetchAll(PDO::FETCH_ASSOC);
 
-  if ( $db->errorInfo() === 0000 ) {
-    $error_array = $db->errorInfo();
-    echo "SQL ошибка: " . $error_array[2] . '<br>';
-  }
-
-  while ($item = $dataInfo) {
-    return $item;
-  }
 } 
 catch (PDOException $e)
 {
