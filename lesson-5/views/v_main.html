@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>{{ titlePage }}</title>
+    <link href="https://fonts.googleapis.com/css2?family=Recursive:wght@500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./public/css/css.css">
+</head>
+
+<body>
+    <div class="container">
+
+        <header>
+            <a href="#">
+                <img src="https://raw.githubusercontent.com/Vlad777-bit/static/master/e-bike/logo/e-bike.webp" alt="logo">
+            </a>
+            <ul class="menu">
+                <li>
+                    <a class="menu_link" href="#">Главная</a>
+                </li>
+                <li>
+                    <a class="menu_link" href="#">Каталог</a>
+                </li>
+                <li>
+                    <a class="menu_link" href="#">Войти</a>
+                </li>
+            </ul>
+        </header>
+
+        <div class="content center">
+            <h1 class="title center">{{ titlePage }}</h1>
+
+            <div class="sign-in">
+
+                <form action="#" method="POST" class="form_product">
+
+                    <div>
+                        <label for="login" class="label_product">Логин</label>
+
+                        <br>
+
+                        <input id="login" type="text" name="login" placeholder="Ваш логин"
+                            value="">
+
+                        <label for="password" class="label_product">Пароль</label>
+
+                        <br>                       
+
+                        <input id="password" type="password" name="password" placeholder="Ваш пароль"
+                            value="">
+                    </div>
+
+                    <div class="sign-in__btn">
+                        <input type="submit" class="form_btn" name="sign-in" value="Вход">
+                    </div>
+                </form>
+
+                <form action="#" method="POST" class="form_product">
+
+                    <div>
+                        <label for="new_login" class="label_product">Логин</label>
+
+                        <br>
+
+                        <input id="new_login" type="text" name="new_login" placeholder="Придумайте логин">
+
+                        <label for="new_password" class="label_product">Пароль</label>
+
+                        <input id="new_password" type="password" name="new_password" placeholder="Придумайте пароль">
+
+                        <label for="repeat_password" class="label_product">Повторите пароль ещё раз</label>
+
+                        <input id="repeat_password" type="password" name="repeat_password"
+                            placeholder="Повторите пароль">
+                    </div>
+
+                    <div class="sign-in__btn">
+                        <input type="submit" class="form_btn" name="registration" value="Зарегистрироваться">
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <footer>
+            &copy Все права защищены
+        </footer>
+
+    </div>
+</body>
+
+</html>
