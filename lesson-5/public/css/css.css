@@ -374,9 +374,9 @@ textarea {
     color: #f5deb3;
 }
 
-.input[type="text"] {
+/* .input[type="text"] {
     text-transform: capitalize;
-}
+} */
 
 .btn {
     padding: 2%;
@@ -402,7 +402,7 @@ textarea {
 
 .sign-in {
     width: 80%;
-    height: 64vh;
+    min-height: 64vh;
     background: wheat;
     padding: 25px;
     border-radius: 15px;
@@ -416,13 +416,14 @@ textarea {
 .sign-in__btn {
     width: 100%;
     display: flex;
+    flex-direction: column;
     justify-content: space-between;
     align-items: center;
 } 
 
-.sign-in__btn input:not(:last-child) {
+/* .sign-in__btn input:not(:last-child) {
     margin-right: 7px;
-}
+} */
 
 /*Подвал*/
 footer {
