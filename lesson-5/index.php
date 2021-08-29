@@ -1,15 +1,17 @@
 <?php
 
-require_once './lib/vendor/autoload.php';
+require_once 'autoload.php';
 
-$loader = new \Twig\Loader\FilesystemLoader('./views');
-$twig = new \Twig\Environment($loader, []);
+$method = (isset($_GET['method'])) ? $_GET['method'] : 'read'; 
 
-$template = $twig->load('v_main.html');
+if (isset($_GET['class'])) {
+    if ($_GET['class'] === 'page') {
+        $controller = new PageC();
+    } elseif ($_GET['class'] === 'user') {
+        $controller = new UserC();
+    }
+} else {
+    $controller = new PageC();
+}
 
-$titlePage = 'Регистация';
-
-
-echo $template->render([
-  'titlePage' => $titlePage,
-]);
+$controller -> request($method);
