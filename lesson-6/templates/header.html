@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>{{ title }}</title>
+    <link href="https://fonts.googleapis.com/css2?family=Recursive:wght@500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./css/css.css">
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <a href="index.php?path=Index/index">
+                <img src="https://raw.githubusercontent.com/Vlad777-bit/static/master/e-bike/logo/e-bike.webp" alt="logo">
+            </a>
+            <ul class="menu">
+                <li>
+                    <a class="menu_link" href="index.php?path=Index/index">Главная</a>
+                </li>
+                <li>
+                    <a class="menu_link" href="index.php?path=Catalog/catalog">Каталог</a>
+                </li>
+
+                <li>
+                    <a class="menu_link" href="index.php?path=Test/delete">Test</a>
+                </li>
+
+
+                {# {% if user == true %}
+                <li>
+                    <a href="index.php?class=user&method=getUser" class="menu_link">Личный кабинет</a>
+                </li>
+                <li>
+                    <a href="index.php?class=user&method=logout" class="menu_link">Выйти</a>
+                </li>
+                {% endif %} #}
+
+                {# {% if user == false %} #}
+                <li>
+                    <a href="index.php?path=Login/login" class="menu_link">Войти</a>
+                </li>
+                {# {% endif %} #}
+
+            </ul>
+        </header>
+
+    {#
+    <!DOCTYPE html>
+    <html>
+
+    <head>
+        <title>{{ title }}</title>
+    </head>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+    <script type="text/javascript" src="/js/main.js"></script>
+    <script type="text/javascript" src="/js/category.js"></script>
+
+    <body>
+        <ul>
+            {% for category in categories %}
+            <li>
+                <a href="/categories/?id={{ category.id_category }}" link="{{ category.id_category }}"
+                    class="category-link">{{ category.name }}</a>
+            </li>
+            {% endfor %}
+        </ul>
+
+        <div>
+            <a href="/user/">Личный кабинет</a>
+        </div> #}
