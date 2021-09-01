@@ -41,28 +41,37 @@ class Good extends Model {
 
     public static function getGoods($categoryId)
     {
+        // return db::getInstance()->Select(
+        //     'SELECT id, `title`, price, `quantity`, img, desc_short, desc_long,  FROM goods WHERE id_category = :category AND status=:status',
+        //     ['status' => Status::Active, 'category' => $categoryId]);
+    }
+
+    public static function getGoodInfo($id = null)
+    {
         return db::getInstance()->Select(
-            'SELECT id, `title`, price, `quantity`, img, desc_short, desc_long,  FROM goods WHERE id_category = :category AND status=:status',
-            ['status' => Status::Active, 'category' => $categoryId]);
+            "SELECT 
+            `id`, `title`, `img`, price, `quantity`, desc_short, desc_long, type_bike, `age`, max_weight, type_drive, bike_weight, max_speed, mileage_at_time, charging_time, frames_material
+            FROM products
+            INNER JOIN images ON (products.id = images.product_id)
+            INNER JOIN specifications ON (products.id = specifications.product_id)
+            WHERE id = :id",
+
+            ['id' => (int)$id]
+        );
+    } 
+
+    public static function getCatalogGoods()
+    {
+        return db::getInstance()->Select(
+            "SELECT 
+            `id`, `title`, img, desc_short
+            FROM products
+            INNER JOIN images ON (products.id = images.product_id)"
+        );
     }
 
-    public static function getGoodInfo(){
-        // return db::getInstance()->Select(
-        //     "SELECT 
-        //     id, title, img, type_bike, age, max_weight, type_drive, bike_weight, max_speed, mileage_at_time, charging_time, frames_material
-        //     FROM products
-        //     INNER JOIN images ON (products.id = images.product_id)
-        //     INNER JOIN specifications ON (`products.id` = `specifications.product_id`)
-        //     WHERE id = '1';"
-        // );
-
-
-        // return db::getInstance()->Select(
-        //     'SELECT * FROM goods WHERE id_good = :id_good',
-        //     ['id_good' => (int)$this->id_good]);
-    }
-
-    public static function getGoodPrice($id_good){
+    public static function getGoodPrice($id_good)
+    {
         // $result = db::getInstance()->Select(
         //     'SELECT price FROM goods WHERE id_good = :id_good',
         //     ['id_good' => $id_good]);

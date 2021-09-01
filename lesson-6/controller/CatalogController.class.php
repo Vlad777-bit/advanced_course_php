@@ -3,7 +3,7 @@
 class CatalogController extends Controller
 {
   public $view = 'catalog';
-  public $title;
+  public $title; 
 
   function __construct()
   {
@@ -14,11 +14,6 @@ class CatalogController extends Controller
 
   function catalog()
   {
-    $item = db::getInstance()->Select(
-      'select id, title, img, desc_short from products
-      join images on (products.id = images.product_id)'
-    );
-
-    return $item; 
+    return Good::getCatalogGoods();
   }
 }
