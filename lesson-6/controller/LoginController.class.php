@@ -2,7 +2,7 @@
 
 class LoginController extends Controller
 {
-  public $view = 'login';
+  public $view = 'authorization'; 
   public $title;
   public $titlePage;
 
@@ -10,17 +10,11 @@ class LoginController extends Controller
   {
     parent::__construct();
     $this->title .= ' | Вход';
-    $this->titlePage = 'Вход/Регистрация';
+    $this->titlePage = 'Вход';
   }
 
-  
   function login($data)
   {
-    return 'hello login';
-  }
-
-  function registration($data)
-  {
-    return 'hello registartion';
+    return Login::checkAction();
   }
 }

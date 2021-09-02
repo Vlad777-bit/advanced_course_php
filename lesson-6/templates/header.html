@@ -28,45 +28,22 @@
                 </li>
 
 
-                {# {% if user == true %}
+                {% if userName %}
                 <li>
-                    <a href="index.php?class=user&method=getUser" class="menu_link">Личный кабинет</a>
+                    <a href="index.php?path=User/account" class="menu_link">{{ userName }}</a>
                 </li>
                 <li>
-                    <a href="index.php?class=user&method=logout" class="menu_link">Выйти</a>
+                    <a href="" class="menu_link">Выйти</a>
                 </li>
-                {% endif %} #}
+                {% endif %}
 
-                {# {% if user == false %} #}
+                {% if userName is empty %}
+
                 <li>
                     <a href="index.php?path=Login/login" class="menu_link">Войти</a>
                 </li>
-                {# {% endif %} #}
+
+                {% endif %}
 
             </ul>
         </header>
-
-    {#
-    <!DOCTYPE html>
-    <html>
-
-    <head>
-        <title>{{ title }}</title>
-    </head>
-    <script type="text/javascript" src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
-    <script type="text/javascript" src="/js/main.js"></script>
-    <script type="text/javascript" src="/js/category.js"></script>
-
-    <body>
-        <ul>
-            {% for category in categories %}
-            <li>
-                <a href="/categories/?id={{ category.id_category }}" link="{{ category.id_category }}"
-                    class="category-link">{{ category.name }}</a>
-            </li>
-            {% endfor %}
-        </ul>
-
-        <div>
-            <a href="/user/">Личный кабинет</a>
-        </div> #}

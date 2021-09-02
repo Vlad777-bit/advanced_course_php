@@ -48,6 +48,8 @@ class App
                 'content_data' => $controller->$methodName($_GET),
                 'title' => $controller->title,
                 'titlePage' => $controller->titlePage,
+                'userName' => $controller->userName,
+                'isAdmin' => $controller->isAdmin,
                 'categories' => Category::getCategories(0),
             ];
 

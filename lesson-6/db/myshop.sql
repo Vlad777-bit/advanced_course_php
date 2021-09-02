@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: localhost:3306
--- Время создания: Авг 31 2021 г., 13:27
+-- Время создания: Сен 02 2021 г., 14:41
 -- Версия сервера: 8.0.26-0ubuntu0.20.04.2
 -- Версия PHP: 7.4.3
 
@@ -117,15 +117,17 @@ CREATE TABLE `users` (
   `phone` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `login` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `password` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `is_admin` int NOT NULL DEFAULT '0',
+  `last_activity` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Дамп данных таблицы `users`
 --
 
-INSERT INTO `users` (`id`, `name`, `email`, `phone`, `login`, `password`, `created_at`) VALUES
-(1, 'Admin', 'admin@mail.ru', '88005553535', 'admin', 'a5a30bc4c47888cd59c4e9df68d80242', '2021-08-26 12:36:39');
+INSERT INTO `users` (`id`, `name`, `email`, `phone`, `login`, `password`, `is_admin`, `last_activity`) VALUES
+(1, 'Admin', 'admin@mail.ru', '88005553535', 'admin', 'a5a30bc4c47888cd59c4e9df68d80242', 1, '2021-09-01 13:05:25'),
+(2, 'Диваныч', 'divan@mebel.ru', '+745245643433', 'user', '03aa1a0b0375b0461c1b8f35b234e67a', 0, '2021-09-01 13:17:37');
 
 --
 -- Индексы сохранённых таблиц
@@ -162,7 +164,7 @@ ALTER TABLE `products`
 -- AUTO_INCREMENT для таблицы `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
