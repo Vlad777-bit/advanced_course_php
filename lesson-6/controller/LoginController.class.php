@@ -13,8 +13,9 @@ class LoginController extends Controller
     $this->titlePage = 'Вход';
   }
 
-  function login($data)
+  function login()
   {
-    return Login::checkAction();
+    Login::checkAction();
+    return implode(', ', Login::$loginErrors);
   }
 }

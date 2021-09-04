@@ -3,16 +3,18 @@
 <div class="content center">
   <h1 class="title center">{{ titlePage }}</h1>
 
-  {{ content_data }}
-
   <div class="sign-in"> 
     <div class="form_product"> 
-      <form method="POST"> 
+      <form method="POST" class="w100"> 
         <div>
           <label for="login" class="label_product">Логин</label>
+          <br>
+  
+          <span class="error">{{ content_data }}</span>
           <input id="login" type="text" name="login" placeholder="Ваш логин" value="">
   
           <label for="password" class="label_product">Пароль</label>
+
           <input id="password" type="password" name="password" placeholder="Ваш пароль" value="">
         </div>
         <div class="sign-in__btn">
