@@ -37,18 +37,13 @@ class Login extends Model
     ];
   }
 
-  private static function getUsers()
-  {
-    return db::getInstance()->Select(
-      "SELECT * FROM " . self::$table
-    );
-  }
-
-  public static function getUser($login, $password)
+  private static function getUser($login, $password)
   {
     return db::getInstance()->Select(
       "SELECT * FROM " . self::$table . 
-      " WHERE `login` = '$login' AND `password` = '$password'"
+      " WHERE `login` = :login AND `password` = :password",
+
+      ['login' => $login, 'password' => $password]
     );
   }
 
@@ -67,7 +62,7 @@ class Login extends Model
     } 
   }
 
-  public static function checkUser()
+  private static function checkUser()
   {
     $login = trim(strip_tags( $_POST['login'] ));
     $password = trim(strip_tags( $_POST['password'] ));

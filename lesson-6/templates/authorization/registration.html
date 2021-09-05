@@ -3,29 +3,35 @@
 <div class="content center">
   <h1 class="title center">{{ titlePage }}</h1>
 
-  {{ content_data }} 
-
   <div class="sign-in">
-    <form action="#" method="POST" class="form_product">
+    <form method="POST" class="form_product">
+
       <div>
+
         <label for="user_name" class="label_product">Имя</label>
+        <br>
+        <span class="error">{{ content_data }}</span>
         <input id="user_name" class="input" type="text" name="user_name" placeholder="Как к Вам обращаться?">
 
-        <label for="user_phone" class="label_product">Телефон</label>
+        {# <label for="user_phone" class="label_product">Телефон</label>
         <input id="user_phone" class="input" type="tel" name="user_phone" placeholder="Необязательно">
 
         <label for="user_email" class="label_product">E-mail</label>
-        <input id="user_email" class="input" type="email" name="user_email" placeholder="example@mail.com">
+        <input id="user_email" class="input" type="email" name="user_email" placeholder="example@mail.com"> #}
+
+        <label for="user_login" class="label_product">Логин</label>
+        <input id="user_login" class="input" type="text" name="user_login" placeholder="Придумайте логин">
 
         <label for="user_password" class="label_product">Пароль</label>
         <input id="user_password" class="input" type="password" name="user_password" placeholder="Придумайте пароль">
 
         <label for="repeat_password" class="label_product">Повторите пароль ещё раз</label>
         <input id="repeat_password" class="input" type="password" name="repeat_password" placeholder="Повторите пароль">
+
       </div>
 
       <div class="sign-in__btn">
-        <input type="submit" class="form_btn" name="registration" value="Зарегистрироваться">
+        <button class="form_btn" type="submit">Зарегистрироваться</button>
       </div>
     </form>
 
