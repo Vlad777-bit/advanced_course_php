@@ -37,54 +37,53 @@ class Registration extends Model
     ];
   }
 
-  private static function getLoginUser($login)
+  private static function getValUser($col, $val)
   {
     return db::getInstance()->Select(
-      "SELECT `login` FROM " . self::$table . 
-      " WHERE `login` = :login",
+      "SELECT `$col` FROM " . self::$table . 
+      " WHERE `$col` = :$val",
 
-      ['login' => $login]
-    )[0]['login'];
+      ["$val" => $val]
+    )[0]["$col"];
   }
 
   public static function checkFormRegistration()
   {
-    $data = [];
+    try {
 
-    foreach ($_POST as $key => $val) {
-      $data[$key] = trim(strip_tags( $val));
-
-      if (isset($val) && !$val) {
-        return self::$regErrors['empty'] = 'Поля должны быть заполнены';
+      if ($_POST['user_login'] === self::getValUser('login', $_POST['user_login'])) {
+        throw new Exception("Такой логин занят");
+      } else {
+        self::setSession('login', trim(strip_tags($_POST['user_login'])));
       }
 
-      if ($key === 'user_login' && $val === self::getLoginUser($val)) {
-        return self::$regErrors['errLogin'] = 'Такой логин уже зарегистрирован';
+      if ($_POST['user_password'] !== $_POST['repeat_password']) {
+        throw new Exception("Ваши пароли не совпадают");
+      } else {
+        self::setSession('password', trim(strip_tags($_POST['user_password'])));
       }
+
+      if (!$_POST['user_name']) {
+        throw new Exception("Ошибка в строке Name");
+      } else {
+        self::setSession('name', trim(strip_tags($_POST['user_name'])));
+      }
+
+      self::createNewUser($_POST);
+
+    } catch (Exception $e) {
+      self::$regErrors['errorForm'] = $e->getMessage();
     }
 
-    // Не смог занести в foreach
-
-    if ($data['user_password'] !== $data['repeat_password']) {
-      return self::$regErrors['errPassword'] = 'Ваши пароли не совпадают';
-    }
-
-    if (self::createNewUser($data)) {
-      // self::setSession($data['user_name'], $data['user_login'], $data['user_password']);
-      header("Location: index.php?path=Login/login/success");
-    } else {
-      header("Location: index.php?path=Login/login/error");
+    if (count(self::$regErrors) <= 0) {
+      header("Location: index.php?path=User/account");
     }
   }
 
-  // private static function setSession($name, $login, $password)
-  // {
-  //   $_SESSION['name'] = $name;
-  //   $_SESSION['login'] = $login;
-  //   $_SESSION['password'] = $password;
-    
-  //   // header("Location: index.php?path=User/account");
-  // }
+  private static function setSession($key , $value)
+  {
+    $_SESSION["$key"] = $value;
+  }
 
   private static function createNewUser($dataUser)
   {
@@ -93,9 +92,9 @@ class Registration extends Model
       VALUES (:name, :login, :password);",
 
       [
-        'name' => $dataUser['user_name'],
-        'login' => $dataUser['user_login'],
-        'password' => $dataUser['user_password']
+        'name' => "{$dataUser['user_name']}",
+        'login' => "{$dataUser['user_login']}",
+        'password' => md5("{$dataUser['user_password']}")
       ]
     );
   }

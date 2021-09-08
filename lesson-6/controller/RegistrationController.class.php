@@ -15,8 +15,10 @@ class RegistrationController extends Controller
 
   function registration($data) 
   {
-    Registration::checkFormRegistration();
-    print_r($_SESSION);
+    if (!empty($_POST)) {
+      Registration::checkFormRegistration();
+    }
+     
     return implode(', ', Registration::$regErrors);
   }
 }
