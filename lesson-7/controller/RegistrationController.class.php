@@ -13,8 +13,12 @@ class RegistrationController extends Controller
     $this->titlePage = 'Регистрация';
   }
 
-  function registration($data)
+  function registration($data) 
   {
-    return 'hello registartion';
+    if (!empty($_POST)) {
+      Registration::checkFormRegistration();
+    }
+     
+    return implode(', ', Registration::$regErrors);
   }
 }
