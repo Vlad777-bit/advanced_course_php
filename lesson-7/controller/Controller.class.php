@@ -9,8 +9,7 @@ class Controller
     function __construct() {
         $this->title = Config::get('sitename');
         $this->titlePage = '';
-        $this->userName = $_SESSION['name'] ?? '';
-        $this->isAdmin = $_SESSION['isAdmin'] ?? '';
+        $this->userData = $_SESSION ?? '';
     }
 
     public function index($data) {

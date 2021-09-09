@@ -23,9 +23,9 @@
                     <a class="menu_link" href="index.php?path=Catalog/catalog">Каталог</a>
                 </li>
 
-                {% if userName %}
+                {% if userData.name %}
                 <li>
-                    <a href="index.php?path=User/account" class="menu_link">{{ userName }}</a>
+                    <a href="index.php?path=User/account" class="menu_link">{{ userData.name }}</a>
                 </li>
                 {% else %}
                 <li>

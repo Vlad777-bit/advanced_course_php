@@ -3,7 +3,7 @@
 class Login extends Model
 {
   protected static $table = 'users';
-  static $loginErrors = [];
+  public static $logErrors = [];
 
   protected static function setProperties()
   {
@@ -54,7 +54,7 @@ class Login extends Model
     }
 
     if (isset($_POST['sign-in'])) {
-      return self::checkUser();
+      return self::checkFormUser();
     } 
 
     if (isset($_POST['registration'])) {
@@ -62,49 +62,39 @@ class Login extends Model
     } 
   }
 
-  private static function checkUser()
+  private static function checkFormUser()
   {
-    $login = trim(strip_tags( $_POST['login'] ));
-    $password = trim(strip_tags( $_POST['password'] ));
+    try {
 
-    if (!($login && $password)) {
-      return self::$loginErrors[0] = 'Поля не могут быть пустыми';
+      $login = trim(strip_tags( $_POST['login'] ));
+      $password = trim(strip_tags( $_POST['password'] ));
+
+      if (!($login && $password)) {
+        throw new Exception("Неверный логин/пароль");
+      } else {
+        $data = self::getUser($login, md5($password));
+      }
+
+      if (!$data) {
+        throw new Exception("Пользователь не найден");
+      } else {
+        foreach ($data[0] as $key => $val) {
+          self::setSession($key, $val);
+        }
+      }
+
+    } catch (Exception $e) {
+      self::$logErrors['errorForm'] = $e->getMessage();
     }
-   
-    $data = self::getUser($login, md5($password));
 
-    if (!$data) {
-      return self::$loginErrors[1] = 'Не верный логин/пароль';
+    if (count(self::$logErrors) <= 0) {
+      header("Location: index.php?path=User/account");
     } else {
-      return self::setSession(
-        $data[0]['name'],
-        $data[0]['email'],
-        $data[0]['phone'],
-        $data[0]['login'],
-        $data[0]['password'],
-        $data[0]['is_admin']
-      );
+      return self::$logErrors;
     }
   }
-
-  private static function setSession($name, $email, $phone = null, $login, $password, $isAdmin)
-  {
-    $_SESSION['name'] = $name;
-    $_SESSION['email'] = $email;
-    $_SESSION['phone'] = $phone;
-    $_SESSION['login'] = $login;
-    $_SESSION['password'] = $password;
-    $_SESSION['isAdmin'] = $isAdmin;   
-    
-    header("Location: index.php?path=User/account");
-  }
-
   public static function logout()
   {
-    // $_SESSION['name'] = '';
-    // $_SESSION['login'] = '';
-    // $_SESSION['password'] = '';
-    // $_SESSION['isAdmin'] = '';
     $_SESSION = [];
     session_destroy();
     header('Location: index.php?path=Login/login');

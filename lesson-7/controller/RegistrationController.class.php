@@ -19,6 +19,6 @@ class RegistrationController extends Controller
       Registration::checkFormRegistration();
     }
      
-    return implode(', ', Registration::$regErrors);
+    return implode(', ', Registration::$logErrors);
   }
 }

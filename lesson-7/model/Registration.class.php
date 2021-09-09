@@ -3,7 +3,7 @@
 class Registration extends Model
 {
   protected static $table = 'users';
-  static $regErrors = [];
+  static $logErrors = [];
 
   protected static function setProperties()
   {
@@ -72,17 +72,12 @@ class Registration extends Model
       self::createNewUser($_POST);
 
     } catch (Exception $e) {
-      self::$regErrors['errorForm'] = $e->getMessage();
+      self::$logErrors['errorForm'] = $e->getMessage();
     }
 
-    if (count(self::$regErrors) <= 0) {
+    if (count(self::$logErrors) <= 0) {
       header("Location: index.php?path=User/account");
     }
-  }
-
-  private static function setSession($key , $value)
-  {
-    $_SESSION["$key"] = $value;
   }
 
   private static function createNewUser($dataUser)

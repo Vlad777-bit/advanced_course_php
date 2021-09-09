@@ -15,7 +15,9 @@ class LoginController extends Controller
 
   function login()
   {
-    Login::checkAction();
-    return implode(', ', Login::$loginErrors);
+    if (isset($_POST)) {
+      Login::checkAction();
+    }
+    return implode(', ', Login::$logErrors);
   }
 }

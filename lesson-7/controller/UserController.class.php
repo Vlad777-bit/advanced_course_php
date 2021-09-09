@@ -10,11 +10,23 @@ class UserController extends Controller
   {
     parent::__construct();
     $this->title .= ' | Личный кабинет';
-    $this->titlePage = 'Личный кабинет';
   }
 
   function account()
   {
+    $this->titlePage = 'Личный кабинет';
     return "Добро пожаловать, ";
+  }
+
+  function editUserData()
+  {
+    $this->titlePage = 'Редактирование данных';
+    if (isset($_POST)) {
+      EditUserData::checkAction();
+    }
+    // return implode(', ', EditUserData::$logErrors);
+    print_r(EditUserData::$logErrors);
+    // print_r($_SESSION);
+    
   }
 }

@@ -1,8 +1,9 @@
 <?php
 
 abstract class Model {
-
+    
     protected static $table;
+    protected static $logErrors;
     protected static $properties = [
         'id' => [
             'type' => 'int',
@@ -117,5 +118,34 @@ abstract class Model {
         if (!isset(static::$properties[$name]['type'])) {
             throw new Exception('Undefined type for property ' . $name);
         }
+    }
+
+    protected static function setSession($key , $value)
+    {
+        if (![$key => $value]) {
+            throw new Exception("Ошибка записи сессии");
+        } else {
+            $_SESSION["$key"] = $value;
+        }
+    }
+
+    protected static function getFormData($formData)
+    {
+        try {
+            $data = [];
+
+            if ($formData) {
+                throw new Exception("Ошибка при получении данных из формы");
+            } else {
+                foreach ($formData as $key => $val) {
+                    $data[$key] = trim(strip_tags( $val ));
+                }
+            }
+
+            return $data;
+        } catch (Exception $e) {
+            return self::$logErrors['ERROR'] = $e->getMessage();
+        }
+
     }
 }
