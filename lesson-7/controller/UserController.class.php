@@ -2,7 +2,7 @@
 
 class UserController extends Controller
 {
-  public $view = 'account';
+  public $view = 'account'; 
   public $title;
   public $titlePage;
 
@@ -24,9 +24,6 @@ class UserController extends Controller
     if (isset($_POST)) {
       EditUserData::checkAction();
     }
-    // return implode(', ', EditUserData::$logErrors);
-    print_r(EditUserData::$logErrors);
-    // print_r($_SESSION);
-    
+    return implode(', ', EditUserData::$logErrors);
   }
 }

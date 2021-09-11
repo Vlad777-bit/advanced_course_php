@@ -134,7 +134,7 @@ abstract class Model {
         try {
             $data = [];
 
-            if ($formData) {
+            if (!$formData) {
                 throw new Exception("Ошибка при получении данных из формы");
             } else {
                 foreach ($formData as $key => $val) {
@@ -146,6 +146,14 @@ abstract class Model {
         } catch (Exception $e) {
             return self::$logErrors['ERROR'] = $e->getMessage();
         }
+    }
 
+    protected static function getColumnTable($column, $table, $id)
+    {
+        return db::getInstance()->Select(
+            "SELECT $column FROM $table WHERE id = :id",
+
+            ['id' => (int)$id]
+        );
     }
 }
