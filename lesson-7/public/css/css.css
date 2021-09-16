@@ -502,7 +502,11 @@ footer {
 }
 
 .cart__img {
-    
+    width: 220px;
+}
+
+.cart__img>img {
+    width: 100%;    
 }
 
 .cart__name {

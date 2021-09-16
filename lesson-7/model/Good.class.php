@@ -1,7 +1,9 @@
 <?php
 
-class Good extends Model {
+class Good extends Model
+{
     protected static $table = 'products';
+    public static $logErrors = [];
 
     protected static function setProperties()
     {
@@ -39,11 +41,34 @@ class Good extends Model {
         ];
     }
 
-    public static function getGoods($categoryId)
+    public static function checkActionGood()
     {
-        // return db::getInstance()->Select(
-        //     'SELECT id, `title`, price, `quantity`, img, desc_short, desc_long,  FROM goods WHERE id_category = :category AND status=:status',
-        //     ['status' => Status::Active, 'category' => $categoryId]);
+        if (isset($_POST['edit'])) {
+            return self::getGoodInfo($_POST['edit'])[0];
+        }
+
+        if (isset($_POST['send'])) {
+            $dataGood = self::getFormData($_POST);
+
+            self::updateGood($dataGood);
+        }
+
+        if (isset($_POST['add'])) {
+            echo "added";
+        }
+
+        if (isset($_POST['delete'])) {
+            echo "deleted";
+        }
+    }
+
+    public static function getGoods()
+    {
+        return db::getInstance()->Select(
+            "SELECT `id`, `title`, `img` 
+            FROM " . self::$table . " INNER JOIN images ON 
+            (products.id = images.product_id)"
+        );
     }
 
     public static function getGoodInfo($id = null)
@@ -58,7 +83,7 @@ class Good extends Model {
 
             ['id' => (int)$id]
         );
-    } 
+    }
 
     public static function getCatalogGoods()
     {
@@ -77,5 +102,61 @@ class Good extends Model {
         //     ['id_good' => $id_good]);
 
         // return (isset($result[0]) ? $result[0]['price'] : null);
+    }
+
+    private static function updateGood($data)
+    {
+        try {
+            if (!$data) {
+                throw new Exception("Ошибка при изменении товара");
+            } else {
+                db::getInstance()->Query(
+                    "UPDATE products
+                    INNER JOIN specifications ON (products.id = specifications.product_id)
+                    SET 
+                    title = :title,
+                    price = :price,
+                    quantity = :quantity,
+                    desc_short = :desc_short,
+                    desc_long = :desc_long,
+    
+                    type_bike = :type_bike,
+                    age = :age,
+                    max_weight = :max_weight,
+                    type_drive = :type_drive,
+                    bike_weight = :bike_weight,
+                    max_speed = :max_speed,
+                    mileage_at_time = :mileage_at_time,
+                    charging_time = :charging_time,
+                    frames_material = :frames_material
+    
+                    WHERE id = :id",
+
+                    [
+                        'id' => $data['id'],
+                        'title' => $data['title'],
+                        'price' => $data['price'],
+                        'quantity' => $data['quantity'],
+                        'desc_short' => $data['desc_short'],
+                        'desc_long' => $data['desc_long'],
+
+                        'type_bike' => $data['type_bike'],
+                        'age' => $data['age'],
+                        'max_weight' => $data['max_weight'],
+                        'type_drive' => $data['type_drive'],
+                        'bike_weight' => $data['bike_weight'],
+                        'max_speed' => $data['max_speed'],
+                        'mileage_at_time' => $data['mileage_at_time'],
+                        'charging_time' => $data['charging_time'],
+                        'frames_material' => $data['frames_material'],
+                    ]
+                );
+                header("Location: index.php?path=Admin/index");
+                return;
+            }
+
+        } catch (Exception $e) {
+            self::$logErrors["ERROR"] = $e->getMessage();
+        }
     }
 }
