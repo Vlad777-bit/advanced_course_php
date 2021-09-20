@@ -49,8 +49,7 @@ class Good extends Model
 
         if (isset($_POST['send'])) {
             $dataGood = self::getFormData($_POST);
-
-            self::updateGood($dataGood);
+            return self::updateGood($dataGood);
         }
 
         if (isset($_POST['add'])) {
@@ -58,7 +57,7 @@ class Good extends Model
         }
 
         if (isset($_POST['delete'])) {
-            echo "deleted";
+            return self::deleteGood($_POST['delete']);
         }
     }
 
@@ -158,5 +157,16 @@ class Good extends Model
         } catch (Exception $e) {
             self::$logErrors["ERROR"] = $e->getMessage();
         }
+    }
+
+    private static function deleteGood($idGood)
+    {
+        db::getInstance()->Query(
+            "DELETE FROM " . self::$table . " WHERE id = :id",
+
+            ['id' => (int)$idGood]
+        );
+
+        header("Location: index.php?path=Admin/index");
     }
 }

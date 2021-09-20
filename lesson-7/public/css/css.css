@@ -438,7 +438,7 @@ footer {
 }
 
 .disable-outline {
-    outline: none;
+    outline: none !important;
 }
 
 .disable-outline:hover {

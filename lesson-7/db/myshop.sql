@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: localhost:3306
--- Время создания: Сен 08 2021 г., 12:57
+-- Время создания: Сен 16 2021 г., 11:13
 -- Версия сервера: 8.0.26-0ubuntu0.20.04.2
 -- Версия PHP: 7.4.3
 
@@ -128,7 +128,7 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`id`, `name`, `email`, `phone`, `login`, `password`, `is_admin`, `last_activity`) VALUES
 (1, 'Admin', 'admin@mail.ru', '88005553535', 'admin', 'a5a30bc4c47888cd59c4e9df68d80242', 1, '2021-09-01 13:05:25'),
 (2, 'Диваныч', 'divan@mebel.ru', '+745245643433', 'user', '03aa1a0b0375b0461c1b8f35b234e67a', 0, '2021-09-01 13:17:37'),
-(37, 'Vlad', NULL, NULL, 'vlad', '4a7d1ed414474e4033ac29ccb8653d9b', 0, '2021-09-08 12:56:58');
+(38, 'Vlad', 'test@mail.ru', '+79270956874', 'vlad', '4a7d1ed414474e4033ac29ccb8653d9b', 0, '2021-09-09 08:24:54');
 
 --
 -- Индексы сохранённых таблиц
@@ -165,7 +165,7 @@ ALTER TABLE `products`
 -- AUTO_INCREMENT для таблицы `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

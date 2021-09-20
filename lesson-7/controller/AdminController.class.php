@@ -27,4 +27,4 @@ class AdminController extends Controller
            return Good::checkActionGood();
         }
     }
-} 
+}  
