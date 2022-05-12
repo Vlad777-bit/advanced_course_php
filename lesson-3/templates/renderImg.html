@@ -1,0 +1,13 @@
+{% for item in photo %}
+  {% if item != '.' and item != '..' %}
+  <a href="{{ big }}/{{ item }}"
+    data-fancybox="gallery" 
+    data-caption="{{ item }}" 
+    target="blank" class="img_link"
+  >
+    <img src="{{ small }}/{{ item }}" alt="photo" class="image">
+  </a>
+  {% else %}  
+    
+  {% endif %}  
+{% endfor %}
