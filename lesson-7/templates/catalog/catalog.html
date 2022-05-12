@@ -1,0 +1,22 @@
+{% include 'header.html' %}
+<div class="content">
+<h1 class="title">{{ titlePage }}</h1>
+ 
+{% for item in content_data %} 
+ 
+  <div class="content_product mt20">
+    <a href="../public/img/{{ item.img }}" target="_blank"><img src="../public/img/{{ item.img }}" alt="bike" class="img" /></a>
+    <div class="text">
+      <h3 class="header">{{ item.title }}</h3>
+
+      {{ item.desc_short }}
+
+      <form action="index.php?path=Product/product/{{ item.id }}" method="POST" class="buy_product disable-outline jc-fe p0 mt20">
+        <button type="submit" name="id" value="{{ item.id }}" class="buy_btn">Посмотреть</button>
+      </form>
+    </div>
+  </div>
+
+{% endfor %} 
+</div>
+{% include 'footer.html' %}

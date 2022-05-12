@@ -1,0 +1,45 @@
+{% include './header.html' %}
+
+<div class="content center">
+  <h1 class="title center">{{ titlePage }}</h1>
+
+  <div class="carts">
+
+  {% for good in content_data %}
+
+    <div class="cart">
+
+      <div class="cart__img">
+        <img src="../public/img/{{ good.img }}">
+      </div>
+
+      <div class="cart__name">
+        <p>{{ good.title }}</p>
+      </div>
+
+      <form action="index.php?path=Admin/editGood/{{ good.id }}" method="POST" class="cart__form">
+        <button type="submit" class="cart__btn" name="edit" value="{{ good.id }}">
+          Редактировать
+        </button>
+
+        <button type="submit" class="cart__btn" name="delete" value="{{ good.id }}">
+          Удалить
+        </button>
+      </form>
+
+    </div>
+
+  {% endfor %} 
+
+    <div class="cart disable-outline">
+      <form action="index.php?path=Admin/editGood" method="POST" class="cart__form">
+        <button type="submit" class="cart__btn cart__add" name="add">
+          +
+        </button>
+      </form>
+    </div>
+  </div>
+
+</div>
+
+{% include './footer.html' %}

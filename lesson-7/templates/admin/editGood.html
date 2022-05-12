@@ -1,0 +1,61 @@
+{% include 'header.html' %}
+
+<div class="content center">
+  <h1 class="title center">{{ titlePage }}</h1>
+
+  <form action="index.php?path=Admin/editGood" method="POST" class="form_product w80">
+
+    <input type="hidden" name="id" value="{{ content_data.id }}">
+
+    <label for="title" class="label_product">Имя</label>
+    <input id="title" class="input" type="text" name="title" value="{{ content_data.title }}" />
+
+    <label for="price" class="label_product">Цена</label>
+    <input id="price" class="input" type="text" name="price" value="{{ content_data.price }}" />
+
+    <label for="quantity" class="label_product">Количество</label>
+    <input id="quantity" class="input" type="text" name="quantity" value="{{ content_data.quantity }}"
+    />
+
+    <label for="desc_short" class="label_product">Описание товара</label>
+    <textarea id="desc_short" name="desc_short">
+      {{ content_data.desc_short }}
+    </textarea>
+ 
+    <label for="type_bike" class="label_product">Тип велосипеда</label>
+    <input id="type_bike" class="input" type="text" name="type_bike" value="{{ content_data.type_bike }}" />
+
+    <label for="age" class="label_product">Возраст</label>
+    <input id="age" class="input" type="text" name="age" value="{{ content_data.age }}" />
+
+    <label for="max_weight" class="label_product">Максимальный вес</label>
+    <input id="max_weight" class="input" type="text" name="max_weight" value="{{ content_data.max_weight }}" />
+
+    <label for="type_drive" class="label_product">Тип привода</label>
+    <input id="type_drive" class="input" type="text" name="type_drive" value="{{ content_data.type_drive }}" />
+
+    <label for="bike_weight" class="label_product">Вес велосипеда</label>
+    <input id="bike_weight" class="input" type="text" name="bike_weight" value="{{ content_data.bike_weight }}" />
+
+    <label for="max_speed" class="label_product">Максимальная скорость</label>
+    <input id="max_speed" class="input" type="text" name="max_speed" value="{{ content_data.max_speed }}" />
+
+    <label for="mileage_at_time" class="label_product">Пробег на одном заряде</label>
+    <input id="mileage_at_time" class="input" type="text" name="mileage_at_time" value="{{ content_data.mileage_at_time }}" />
+
+    <label for="charging_time" class="label_product">Время зарядки</label>
+    <input id="charging_time" class="input" type="text" name="charging_time" value="{{ content_data.charging_time }}" />
+
+    <label for="frames_material" class="label_product">Материал рамы</label>
+    <input id="frames_material" class="input" type="text" name="frames_material" value="{{ content_data.frames_material }}" />
+
+    <label for="desc_long" class="label_product">Подробное описание товара</label>
+    <textarea id="desc_long" name="desc_long">
+      {{ content_data.desc_long }}
+    </textarea>
+
+    <input type="submit" class="form_btn" name="send" value="Отправить" />
+  </form>
+</div>
+
+{% include 'footer.html' %}

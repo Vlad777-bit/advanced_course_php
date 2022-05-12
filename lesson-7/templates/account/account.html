@@ -1,0 +1,24 @@
+{% include './header.html' %}
+
+<div class="content center">
+  <h1 class="title center">{{ titlePage }}</h1>
+
+  <span>{{ content_data }} {{ userData.name }}</span>
+
+  <form action="index.php?path=Login/login" method="POST">
+    <input type="submit" name="sign-out" value="Выйти" class="form_btn">
+  </form>
+
+  {% if userData.is_admin != 0 %}
+  <form action="index.php?path=Admin/index" method="POST">
+    <input type="submit" name="admin" value="Админка" class="form_btn">
+  </form>
+  {% endif %}
+
+  <form action="index.php?path=User/editUserData/user_id={{ userData.id }}" method="POST">
+    <input type="submit" name="edit" value="Редактировать данные" class="form_btn">
+  </form>
+
+</div>
+
+{% include './footer.html' %}
