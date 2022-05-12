@@ -1,0 +1,34 @@
+{% include './header.html' %}
+
+<div class="content center">
+  <h1 class="title center">{{ titlePage }}</h1>
+
+  <div class="sign-in"> 
+    <div class="form_product"> 
+      <form method="POST" class="w100"> 
+        <div>
+          <label for="login" class="label_product">Логин</label>
+          <br>
+  
+          <span class="error">{{ content_data }}</span>
+          <input id="login" type="text" name="login" placeholder="Ваш логин" value="">
+  
+          <label for="password" class="label_product">Пароль</label>
+
+          <input id="password" type="password" name="password" placeholder="Ваш пароль" value="">
+        </div>
+        <div class="sign-in__btn">
+          <input type="submit" class="form_btn" name="sign-in" value="Вход">
+        </div>
+      </form>
+      <span class="label_product center w100 mt20">Или</span>
+      <form method="POST" class="w100">
+        <div class="sign-in__btn">
+          <input type="submit" class="form_btn" name="registration" value="Регистрация">
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+{% include 'footer.html' %}

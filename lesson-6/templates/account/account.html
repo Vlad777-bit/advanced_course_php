@@ -1,0 +1,24 @@
+{% include './header.html' %}
+
+<div class="content center">
+  <h1 class="title center">{{ titlePage }}</h1>
+
+  <span>{{ content_data }} {{ userName }}</span>
+
+  <form action="index.php?path=Login/login" method="POST">
+    <input type="submit" name="sign-out" value="Выйти" class="form_btn">
+  </form>
+
+  {% if isAdmin != 0 %}
+  <form action="#" method="POST">
+    <input type="submit" name="sign-out" value="Админка" class="form_btn">
+  </form>
+  {% endif %}
+
+  <form action="#" method="POST">
+    <input type="submit" name="sign-out" value="Редактировать данные" class="form_btn">
+  </form>
+
+</div>
+
+{% include './footer.html' %}

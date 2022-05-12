@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>{{ title }}</title>
+    <link href="https://fonts.googleapis.com/css2?family=Recursive:wght@500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./css/css.css">
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <a href="index.php?path=Index/index">
+                <img src="https://raw.githubusercontent.com/Vlad777-bit/static/master/e-bike/logo/e-bike.webp" alt="logo">
+            </a>
+            <ul class="menu">
+                <li>
+                    <a class="menu_link" href="index.php?path=Index/index">Главная</a>
+                </li>
+                <li>
+                    <a class="menu_link" href="index.php?path=Catalog/catalog">Каталог</a>
+                </li>
+
+                {% if userName %}
+                <li>
+                    <a href="index.php?path=User/account" class="menu_link">{{ userName }}</a>
+                </li>
+                {% else %}
+                <li>
+                    <a href="index.php?path=Login/login" class="menu_link">Войти</a>
+                </li>
+                {% endif %}
+
+            </ul>
+        </header>
