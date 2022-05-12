@@ -1,0 +1,16 @@
+{% for item in products %}
+ 
+    <div class="content_product mt20">
+        <a href="./public/img/{{ item.img }}" target="_blank"><img src="public/img/{{ item.img }}" alt="bike" class="img" /></a>
+        <div class="text">
+            <h3 class="header">{{ item.title }}</h3>
+
+            {{ item.desc_short }}
+
+            <div class="buy_product disable-outline jc-fe p0 mt20">
+                <button class="buy_btn">Посмотреть</button>
+            </div>
+        </div>
+    </div>
+
+{% endfor %}
